@@ -1,9 +1,11 @@
-{% extends "home/base.html" %} {% block title %} Results {% endblock %} {% block main %} {% load static %}
-{% include "home/header.html" %}
+{% extends "home/base.html" %} {% block title %} Results {% endblock %} {% block main %} {% load static %} {% include "home/header.html" %}
 <link rel="stylesheet" href="{% static 'movieDetail.css' %}" />
-<img class="backdrop" src="https://image.tmdb.org/t/p/original/{{ data.backdrop_path }}" alt="">
-<div class="gradient">
-</div>
+<img
+  class="backdrop"
+  src="https://image.tmdb.org/t/p/original/{{ data.backdrop_path }}"
+  alt=""
+/>
+<div class="gradient"></div>
 <div class="container row">
   <div class="col col1">
     <img src="https://image.tmdb.org/t/p/w500{{ data.poster_path }}" alt="" />
@@ -20,23 +22,56 @@
       <p class="cat col">Runtime</p>
       <p class="col">{{ data.runtime }} Minutes</p>
     </div>
+    <a href="" class="btn btn-primary">Watch</a>
   </div>
   <div class="col col2">
-    <h1>{{ data.title }}</h1>
-    <p>{{ data.overview }}</p>
-    <h2>Recommendations</h2>
-
-    <div class="rcmd" style="white-space: nowrap; position: absolute;">
-      {% for r in recommendations.results %}
-      <img
-        style="width: 200px; border-radius: 15px"
-        class="card-img-top p-2"
-        src="https://image.tmdb.org/t/p/w500/{{ r.poster_path }}"
-        alt=""
-      />
-
-      {% endfor %}
+    <div class="info-movie row">
+      <h1>{{ data.title }}</h1>
+      <p>{{ data.overview }}</p>
+      <script>
+        fetch(`api/videoTV/`)
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+          });
+      </script>
     </div>
+    {% for g in video.videos.results %}
+        <iframe style="height: 480px" src="https://www.youtube.com/embed/{{g.key}}" frameborder="0"></iframe>
+    {% endfor %}
+    <div class="rcm row">
+      <h2>Recommendations</h2>
+      <div class="rcmd" style="white-space: nowrap; max-width: 400px !important;">
+        {% for r in recommendations.results %}
+        <img
+          style="width: 200px; border-radius: 15px"
+          class="card-img-top p-2"
+          src="https://image.tmdb.org/t/p/w500/{{ r.poster_path }}"
+          alt=""
+        />
+
+        {% endfor %}
+      </div>
+    </div>
+
+    <script>
+      const carouselSlide = document.querySelector(".rcmd");
+      const carouselImages = document.querySelectorAll(".card-img-top");
+      let counter = 1;
+      let durationAnimation = 700; // ms
+      let activeAnimation = "transform " + durationAnimation + "ms ease-in-out";
+      const size = carouselImages[0].clientWidth;
+      const updateSlideTransformX = () => {
+        carouselSlide.style.transform = "translateX(" + -size * counter + "px)";
+
+      };
+      const changeActiveAnimation = (off) => {
+        carouselSlide.style.transition = off === false ? "" : activeAnimation;
+      };
+
+      updateSlideTransformX();
+      let interval = 1000; // 1000 * 3 sec
+    </script>
   </div>
 </div>
 {% endblock %}

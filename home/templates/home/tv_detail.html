@@ -1,5 +1,4 @@
-{% extends "home/base.html" %} {% block title %} Results {% endblock %} {% block main %} {% load static %}
-{% include "home/header.html" %}
+{% extends "home/base.html" %} {% block title %} Results {% endblock %} {% block main %} {% load static %} {% include "home/header.html" %}
 <link rel="stylesheet" href="{% static 'tvDetail.css' %}" />
 <img
   class="backdrop"
@@ -23,13 +22,17 @@
       <p class="cat col">Runtime</p>
       <p class="col">{{data.last_episode_to_air.runtime}} Minutes</p>
     </div>
+    <a href="" class="btn btn-primary">Watch</a>
   </div>
   <div class="col col2">
     <h1>{{ data.name }}</h1>
     <p>{{ data.overview }}</p>
+    {% for g in video.videos.results %}
+        <iframe style="height: 480px" src="https://www.youtube.com/embed/{{g.key}}" frameborder="0"></iframe>
+    {% endfor %}
     <h2>Recommendations</h2>
 
-    <div class="rcmd" style="white-space: nowrap; position: absolute;">
+    <div class="rcmd" style="white-space: nowrap; position: absolute">
       {% for r in recommendations.results %}
       <img
         style="width: 200px; border-radius: 15px"

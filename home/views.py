@@ -35,10 +35,13 @@ def view_tv_detail(request, tv_id):
         f"https://api.themoviedb.org/3/tv/{tv_id}?api_key={API_KEY}&language=en-US")
     recommendations = requests.get(
         f"https://api.themoviedb.org/3/tv/{tv_id}/recommendations?api_key={API_KEY}&language=en-US")
+    video = requests.get(
+        f"https://api.themoviedb.org/3/movie/{tv_id}?api_key=fed9e3d00c4d281e84b32381e1df8e69&append_to_response=videos")
 
     return render(request, "home/tv_detail.html", {
         "data": data.json(),
         "recommendations": recommendations.json(),
+        "video": video.json(),
         "type": "tv"
     })
 
@@ -48,9 +51,12 @@ def view_movie_detail(request, movie_id):
         f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={API_KEY}&language=en-US")
     recommendations = requests.get(
         f"https://api.themoviedb.org/3/movie/{movie_id}/recommendations?api_key={API_KEY}&language=en-US")
+    video = requests.get(
+        f"https://api.themoviedb.org/3/movie/{movie_id}?api_key=fed9e3d00c4d281e84b32381e1df8e69&append_to_response=videos")
     return render(request, "home/movie_detail.html", {
         "data": data.json(),
         "recommendations": recommendations.json(),
+        "video": video.json(),
         "type": "movie"
     })
 

@@ -1,24 +1,32 @@
 {% extends "home/base.html" %} {% block title %} Home {% endblock %} {% block main %} {% include "home/header.html" %}
-<form action="/search/" method="get" class="row g-3" style="margin-top: 50px; margin-left: 200px;">
-    <div class="col-auto">
-      <select class="form-select col" name="type">
-        <option value="movie">Movie</option>
-        <option value="tv">TV Show</option>
-      </select>
-    </div>
-    <div class="col-auto">
-      <input
-        type="text"
-        class="form-control col-auto "
-        placeholder="Nhập từ khóa"
-        name="q"
-      />
-    </div>
-    <div class="col-auto">
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </div>
-  </form>
-<h1 style="color: white; margin-left: 30px; margin-top: 50px;">Trending of Week</h1>
+
+<form
+  action="/search/"
+  method="get"
+  class="row g-3"
+  style="margin-top: 50px; margin-left: 200px"
+>
+  <div class="col-auto">
+    <select class="form-select col" name="type">
+      <option value="movie">Movie</option>
+      <option value="tv">TV Show</option>
+    </select>
+  </div>
+  <div class="col-auto">
+    <input
+      type="text"
+      class="form-control col-auto"
+      placeholder="Nhập từ khóa"
+      name="q"
+    />
+  </div>
+  <div class="col-auto">
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</form>
+<h1 style="color: white; margin-left: 30px; margin-top: 50px">
+  Trending of Week
+</h1>
 <div id="trending" class="movie-item row"></div>
 
 <script>
@@ -58,4 +66,10 @@
       }
     });
 </script>
+<style>
+  a :hover{
+    transform: scale(1.2);
+    transition: .6s;
+  }
+</style>
 {% endblock %}
