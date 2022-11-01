@@ -1,0 +1,23 @@
+{% extends "home/base.html" %} {% block title %} Result {% endblock %} 
+{% block main %} 
+    <div class="row">
+        {% for r in data.results %}
+            <div class="card m-2" style="width: 300px; height: auto">
+                <img
+                class="card-img-top p-2"
+                src="https://image.tmdb.org/t/p/w500/{{ r.poster_path }}"
+                alt=""
+                />
+                <div class="card-body">
+                {% if not r.name %}
+                    <h5 class="card-title"> {{r.title}} </h5>
+                {% else %}
+                    <h5 class="card-title"> {{ r.name }} </h5>
+                {% endif %}
+                <p class="card-text">{{r.overview }}</p>
+                <a href="/{{ type }}/{{ r.id }}/" class="btn btn-primary">View Detail</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

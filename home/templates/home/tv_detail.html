@@ -1,0 +1,44 @@
+{% extends "home/base.html" %} {% block title %} Results {% endblock %} {% block main %} {% load static %}
+{% include "home/header.html" %}
+<link rel="stylesheet" href="{% static 'tvDetail.css' %}" />
+<img
+  class="backdrop"
+  src="https://image.tmdb.org/t/p/original{{ data.backdrop_path }}"
+  alt=""
+/>
+<div class="gradient"></div>
+<div class="container row">
+  <div class="col col1">
+    <img src="https://image.tmdb.org/t/p/w300{{ data.poster_path }}" alt="" />
+    <hr style="width: 414px" />
+    <div class="genres row">
+      <p class="cat col">Genres</p>
+      <p class="col">
+        {% for g in data.genres%}
+        <a>{{ g.name }}, </a>
+        {% endfor %}
+      </p>
+    </div>
+    <div class="runtime row">
+      <p class="cat col">Runtime</p>
+      <p class="col">{{data.last_episode_to_air.runtime}} Minutes</p>
+    </div>
+  </div>
+  <div class="col col2">
+    <h1>{{ data.name }}</h1>
+    <p>{{ data.overview }}</p>
+    <h2>Recommendations</h2>
+
+    <div class="rcmd" style="white-space: nowrap; position: absolute;">
+      {% for r in recommendations.results %}
+      <img
+        style="width: 200px; border-radius: 15px"
+        class="card-img-top p-2"
+        src="https://image.tmdb.org/t/p/w500/{{ r.poster_path }}"
+        alt=""
+      />
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
