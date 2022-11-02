@@ -37,40 +37,41 @@
       </script>
     </div>
     {% for g in video.videos.results %}
-        <iframe style="height: 480px" src="https://www.youtube.com/embed/{{g.key}}" frameborder="0"></iframe>
+    <iframe
+      style="height: 480px"
+      src="https://www.youtube.com/embed/{{g.key}}"
+      frameborder="0"
+    ></iframe>
     {% endfor %}
-    <div class="rcm row">
-      <h2>Recommendations</h2>
-      <div class="rcmd" style="white-space: nowrap; max-width: 400px !important;">
-        {% for r in recommendations.results %}
-        <img
-          style="width: 200px; border-radius: 15px"
-          class="card-img-top p-2"
-          src="https://image.tmdb.org/t/p/w500/{{ r.poster_path }}"
-          alt=""
-        />
-
-        {% endfor %}
-      </div>
+    <h2>Recommendations</h2>
+    <div class="rcmd" style="white-space: nowrap; overflow: hidden">
+      {% for r in recommendations.results %}
+      <img
+        style="width: 200px; border-radius: 15px"
+        class="card-img-top"
+        src="https://image.tmdb.org/t/p/w500/{{ r.poster_path }}"
+        alt=""
+      />
+      {% endfor %}
     </div>
 
     <script>
-      const carouselSlide = document.querySelector(".rcmd");
-      const carouselImages = document.querySelectorAll(".card-img-top");
-      let counter = 1;
-      let durationAnimation = 700; // ms
-      let activeAnimation = "transform " + durationAnimation + "ms ease-in-out";
-      const size = carouselImages[0].clientWidth;
-      const updateSlideTransformX = () => {
-        carouselSlide.style.transform = "translateX(" + -size * counter + "px)";
+      // const carouselSlide = document.querySelector(".rcmd");
+      // const carouselImages = document.querySelectorAll(".card-img-top");
+      // let counter = 1;
+      // let durationAnimation = 700; // ms
+      // let activeAnimation = "transform " + durationAnimation + "ms ease-in-out";
+      // const size = carouselImages[0].clientWidth;
+      // const updateSlideTransformX = () => {
+      //   carouselSlide.style.transform = "translateX(" + -size * counter + "px)";
 
-      };
-      const changeActiveAnimation = (off) => {
-        carouselSlide.style.transition = off === false ? "" : activeAnimation;
-      };
+      // };
+      // const changeActiveAnimation = (off) => {
+      //   carouselSlide.style.transition = off === false ? "" : activeAnimation;
+      // };
 
-      updateSlideTransformX();
-      let interval = 1000; // 1000 * 3 sec
+      // updateSlideTransformX();
+      // let interval = 1000; // 1000 * 3 sec
     </script>
   </div>
 </div>

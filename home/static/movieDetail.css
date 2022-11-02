@@ -32,6 +32,7 @@ body{
 
 .col1{
     max-width: 440px;
+    z-index: 1;
 }
 
 .col1 img{
@@ -44,17 +45,6 @@ body{
     font-size: 16px;
 }
 
-.rcm {
-    z-index: 1;
-}
-
-.col2 .rcmd{
-    max-width: 500px;
-    width: 100%;
-}
-
-.col2 .rcmd img
-{   
+.col2 .rcmd {
     white-space: nowrap;
-    z-index: -1;
 }
